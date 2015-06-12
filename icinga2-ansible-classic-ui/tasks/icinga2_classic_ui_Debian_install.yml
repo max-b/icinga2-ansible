@@ -1,4 +1,8 @@
 ---
+- name: Need Backports repositories for installing Icinga Classic UI?
+  apt_repository: repo='deb http://archive.canonical.com/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} partner' state=present
+  when: ansible_distribution|lower  == 'ubuntu'
+
 - name: Install Icinga Classic UI on Debian OS family
   apt: pkg={{ item.package }} 
        state=latest
